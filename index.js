@@ -1,10 +1,12 @@
 import express from 'express';                // importa o Express
+import logger from './middlewares/logger.js';      // importa o middleware de log
 import alunosRouter from './routes/alunos.js'; // importa o router de alunos <- NOVO
 
 const app = express();      // cria a aplicação Express
 const PORT = 3000;          // porta do servidor
 
 app.use(express.json());    // middleware que parseia JSON do body das requisições  <- NOVO
+app.use(logger);            // <- ESSA LINHA ADICIONADA AQUI FAZ O LOG APARECER NO TERMINAL!
 
 // rota raiz — boas-vindas
 app.get('/', (req, res) => {
