@@ -1,5 +1,6 @@
 import 'dotenv/config'; 
 import express from 'express';                // importa o Express
+import cors from 'cors';                              // novo import
 import logger from './middlewares/logger.js';      // importa o middleware de log
 import tratarErro from './middlewares/erro.js';     // novo import
 import alunosRouter from './routes/alunos.js'; // importa o router de alunos <- NOVO
@@ -8,6 +9,7 @@ import mensagensRouter from './routes/mensagens.js'; // novo import
 const app = express();      // cria a aplicação Express
 const PORT = process.env.PORT || 3000;  // lê do .env, com fallback para 3000        
 
+app.use(cors());            // 1º — libera CORS para qualquer origem
 app.use(express.json());    // middleware que parseia JSON do body das requisições  <- NOVO
 app.use(logger);            // <- ESSA LINHA ADICIONADA AQUI FAZ O LOG APARECER NO TERMINAL!
 
